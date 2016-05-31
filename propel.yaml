@@ -1,0 +1,18 @@
+propel:
+  database:
+      connections:
+          referral_system:
+              adapter: mysql
+              classname: Propel\Runtime\Connection\ConnectionWrapper
+              dsn: "mysql:host=localhost;dbname=referral_system"
+              user: maldaba
+              password: 14052016
+              attributes:
+  runtime:
+      defaultConnection: referral_system
+      connections:
+          - referral_system
+  generator:
+      defaultConnection: referral_system
+      connections:
+          - referral_system

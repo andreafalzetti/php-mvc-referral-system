@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="referral_system">
+  <table name="client">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="title" type="VARCHAR" size="10" required="true"/>
+    <column name="first_name" type="VARCHAR" size="45" required="true"/>
+    <column name="last_name" type="VARCHAR" size="45" required="true"/>
+    <column name="dob" type="VARCHAR" size="10"/>
+    <column name="email" type="VARCHAR" size="45"/>
+    <column name="mobile" type="VARCHAR" size="15"/>
+    <column name="address" type="VARCHAR" size="256"/>
+    <column name="notes" type="VARCHAR" size="45"/>
+    <column name="created" type="TIMESTAMP" required="true" defaultExpr="CURRENT_TIMESTAMP"/>
+  </table>
+  <table name="user">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="email" type="VARCHAR" size="45" required="true"/>
+    <column name="password" type="VARCHAR" size="32" required="true"/>
+    <column name="created" type="TIMESTAMP" defaultExpr="CURRENT_TIMESTAMP"/>
+  </table>
+  <table name="review">
+    <column name="id" type="INTEGER" primaryKey="true" required="true" autoIncrement="true"/>
+    <column name="client_id" type="INTEGER" required="true"/>
+    <column name="user_id" type="INTEGER" required="true"/>
+    <column name="status" type="TINYINT" required="true" default="0" defaultExpr="0"/>
+    <column name="message" type="LONGVARCHAR"/>
+    <column name="created" type="TIMESTAMP" defaultExpr="CURRENT_TIMESTAMP"/>
+    <foreign-key name="fk_review_client" foreignTable="client">
+      <reference local="client_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key name="fk_review_user1" foreignTable="user">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <index name="fk_review_client_idx">
+      <index-column name="client_id"/>
+    </index>
+    <index name="fk_review_user1_idx">
+      <index-column name="user_id"/>
+    </index>
+  </table>
+</database>

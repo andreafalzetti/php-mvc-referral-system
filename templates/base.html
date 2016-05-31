@@ -1,0 +1,28 @@
+{% set baseUrl = 'http://localhost/referral-system' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+            <title>{% block title %}{% endblock %} - My Webpage</title>
+            
+            <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/templates/assets/js/bootstrap/css/bootstrap.min.css" />
+            <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/templates/assets/js/bootstrap/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/templates/assets/css/style.css">
+
+        {% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            
+            {% include 'navbar.html' %}
+            
+            <div id="content">{% block content %}{% endblock %}</div>
+        </div>
+        <script type="text/javascript">
+            var baseUrl = "{{ baseUrl }}";
+        </script>
+        <script src="{{ baseUrl }}/templates/assets/js/jquery.min.js"></script>
+        <script src="{{ baseUrl }}/templates/assets/js/bootstrap/js/bootstrap.min.js"></script>    
+        <script src="{{ baseUrl }}/templates/assets/js/referral_system.js"></script>
+    </body>
+</html>

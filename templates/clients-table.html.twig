@@ -1,0 +1,37 @@
+    <table class="table clients">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Notes</th>
+        </tr>
+        {% for client in clients %}
+            <tr data-user-id="{{ client.id }}">
+                <td>{{ client.id }}</td>
+                <td>{{ client.first_name }}</td>
+                <td>{{ client.last_name }}</td>
+                <td>{{ client.dob }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.mobile }}</td>
+                <td>
+                    <div>{{ client.address.address_line_1 }}</div>
+                    <div>{{ client.address.address_line_2 }}</div>
+                    <div>{{ client.address.address_postcode }}</div>
+                    <div>{{ client.address.address_city }}</div>
+                    <div>{{ client.address.address_country }}</div>
+                </td>
+                <td>{{ client.notes }}</td>
+            </tr>
+        {% endfor %}       
+    </table>
+
+    {% include 'pagination.html.twig' with {
+        currentPage: currentPage,
+        paginationPath: paginationPath,
+        lastPage: lastPage,
+        showAlwaysFirstAndLast: false
+    } only %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Referral System{% endblock %}
+{% block content %}
+    
+    <h3>Search Results</h3>
+
+    <h4>Clients</h4>
+    <table class="table search-results clients">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Address</th>
+            <th>Notes</th>
+        </tr>
+        {% for client in clients %}
+            <tr data-user-id="{{ client.Id }}">
+                <td>{{ client.Id }}</td>
+                <td>{{ client.FirstName }}</td>
+                <td>{{ client.LastName }}</td>
+                <td>{{ client.Dob }}</td>
+                <td>{{ client.Email }}</td>
+                <td>{{ client.Mobile }}</td>
+                <td>
+                    <div>{{ client.Address.address_line_1 }}</div>
+                    <div>{{ client.Address.address_line_2 }}</div>
+                    <div>{{ client.Address.address_postcode }}</div>
+                    <div>{{ client.Address.address_city }}</div>
+                    <div>{{ client.Address.address_country }}</div>
+                </td>
+                <td>{{ client.Notes }}</td>
+            </tr>
+        {% endfor %}       
+    </table>
+    
+{% endblock %}

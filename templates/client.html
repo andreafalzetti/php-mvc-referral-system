@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Client{% endblock %}
+{% block content %}
+
+<h3>{{ title }}</h3><button id="random_client" class="btn btn-info btn-xs" style="display: none;">Generate a Random client</button>
+
+<p class="{{ message_class }}">{{ message }}</p>
+
+<form method="POST">    
+    <div class="form-group">
+        <label for="title">Title</label>
+        <select name="title" id="title" class="form-control">
+            <option value="Mr" {% if client.Title == "Mr" %}selected="selected"{% endif %}>Mr</option>
+            <option value="Mrs" {% if client.Title == "Mrs" %}selected="selected"{% endif %}>Mrs</option>
+            <option value="Miss" {% if client.Title == "Miss" %}selected="selected"{% endif %}>Miss</option>
+            <option value="Ms" {% if client.Title == "Ms" %}selected="selected"{% endif %}>Ms</option>
+            <option value="Sir" {% if client.Title == "Sir" %}selected="selected"{% endif %}>Sir</option>
+            <option value="Dr" {% if client.Title == "Dr" %}selected="selected"{% endif %}>Dr</option>
+            <option value="Lady" {% if client.Title == "Lady" %}selected="selected"{% endif %}>Lady</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label name="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ client.FirstName }}"/>
+    </div>
+    <div class="form-group">
+        <label name="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ client.LastName }}" />
+    </div>
+    <div class="form-group">
+        <label name="dob">Date of Birth</label>
+        <input type="text" name="dob" id="dob" class="form-control" value="{{ client.Dob }}" />
+    </div>    
+    <div class="form-group">
+        <label name="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" value="{{ client.Email }}" />
+    </div>
+    <div class="form-group">
+        <label name="mobile">Mobile Phone</label>
+        <input type="text" name="mobile" id="mobile" class="form-control" value="{{ client.Mobile }}" />
+    </div>
+    <div class="form-group">
+        <label name="address_line_1">Adress Line 1</label>
+        <input type="text" name="address_line_1" id="address_line_1" class="form-control" value="{{ client.Address.address_line_1 }}" />
+    </div>
+    <div class="form-group">
+        <label name="address_line_2">Adress Line 2</label>
+        <input type="text" name="address_line_2" id="address_line_2" class="form-control" value="{{ client.Address.address_line_2 }}" />
+    </div>
+    <div class="form-group">
+        <label name="address_line_1">Postcode</label>
+        <input type="text" name="address_postcode" id="address_postcode" class="form-control" value="{{ client.Address.address_postcode }}" />
+    </div>
+    <div class="form-group">
+        <label name="address_line_1">City</label>
+        <input type="text" name="address_city" id="address_city" class="form-control" value="{{ client.Address.address_city }}" />
+    </div>    
+    <div class="form-group">
+        <label name="address_line_1">Country</label>
+        <input type="text" name="address_country" id="address_country" class="form-control" value="{{ client.Address.address_country }}" />
+    </div>    
+    <div class="form-group">
+        <label name="notes">Notes</label>
+        <textarea name="notes" class="form-control">{{ client.Notes }}</textarea>
+    </div>
+<!--
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" class="form-control">
+            <option value="0">Referred</option>
+            <option value="1">Accepted</option>
+            <option value="-1">Rejected</option>
+        </select>
+    </div>    
+-->
+    <div class="form-group">
+        <input type="submit" id="save" class="btn btn-primary" name="submit" value="Save" />
+        <input type="submit" id="accept" class="btn btn-success" name="submit" value="Accept" />
+        <input type="submit" id="reject" class="btn btn-danger" name="submit" value="Reject" />        
+                
+        <style>
+        {% if client.Id == "" %}
+        #accept, #reject { display: none; }
+        #random_client { display: block !important; }
+        {% endif %}
+        
+        {% if client.Status == 1 %}
+        #accept { display: none; }
+        {% elseif client.Status == -1 %}
+        #reject { display: none; }
+        {% endif %}
+        </style>
+    
+        <input type="hidden" id="user-id" value="{{ client.Id }}"/>
+    </div>    
+</form>
+{% endblock %}

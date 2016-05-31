@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Import Referrals{% endblock %}
+{% block content %}
+
+<p class="{{ message_class }}">{{ message }}</p>
+
+<form action="{{ baseUrl}}/import" method="POST" enctype="multipart/form-data">    
+    <div class="form-group">
+        <label name="first_name">Select a CSV file</label>
+        <input type="file" name="import_csv"/>
+    </div>    
+    <div class="form-group">
+        <input type="submit" id="Upload" class="btn btn-primary" name="submit_csv" value="Upload" />                
+    </div>    
+</form>
+{% endblock %}

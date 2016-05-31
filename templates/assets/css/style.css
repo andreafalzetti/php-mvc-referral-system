@@ -1,0 +1,4 @@
+table.clients tr:hover {
+    color: #ccc;
+    cursor: pointer;
+}

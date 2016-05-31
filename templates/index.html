@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Referral System{% endblock %}
+{% block content %}
+    
+    <h3>Referred Clients</h3>
+    {% set clients = clients_referred %}
+    {% set paginationPath = "/referral-system/?referred=" %}
+    {% set currentPage = currentPageReferred %}
+    {% set lastPage = totalPagesReferred %}
+    {% include 'clients-table.html.twig' %}
+    <hr/>
+
+    <h3>Accepted Clients {{ totalPagesAccepted }}</h3>
+    {% set clients = clients_accepted %}
+    {% set paginationPath = "/referral-system/?accepted=" %}
+    {% set currentPage = currentPageAccepted %}
+    {% set lastPage = totalPagesAccepted %}
+    {% include 'clients-table.html.twig' %}
+    <hr/>
+
+    <h3>Rejected Clients {{ totalPagesRejected }}</h3>
+    {% set clients = clients_rejected %}
+    {% set paginationPath = "/referral-system/?rejected=" %}
+    {% set currentPage = currentPageRejected %}
+    {% set lastPage = totalPagesRejected %}
+    {% include 'clients-table.html.twig' %}
+    <hr/>
+
+{% endblock %}
